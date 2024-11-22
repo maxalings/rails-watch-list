@@ -1,0 +1,30 @@
+<h2>List: <%= @list.name %></h2>
+
+<h3>Movies in this list:</h3>
+<% if @movies.any? %>
+  <ul>
+    <% @movies.each do |movie| %>
+      <li>
+        <strong><%= movie.title %></strong>
+        <br>
+        <%= movie.overview %>
+        <br>
+        <% bookmark = movie.bookmarks.find_by(list: @list) %>
+        <% if bookmark %>
+          <%= link_to "Delete", list_bookmark_path(@list, bookmark),
+            method: :delete,
+            data: { confirm: "Are you sure you want to delete this movie from the list?" } %>
+        <% else %>
+          <p>No bookmark found for this movie in the current list.</p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No movies added to this list yet.</p>
+<% end %>
+
+<br>
+<%= link_to "Back to index", lists_path %>
+<br>
+<%= link_to "Add a new movie", new_list_bookmark_path(@list) %>

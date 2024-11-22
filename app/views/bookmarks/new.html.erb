@@ -1,0 +1,6 @@
+<h1>new bm</h1>
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.association :movie, collection: Movie.all, label_method: :title, value_method: :id, prompt: "Select a movie" %>
+  <%= f.input :comment, label: "Add a comment" %>
+  <%= f.button :submit, class: "btn-primary" %>
+<% end %>

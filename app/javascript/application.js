@@ -2,6 +2,9 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+import "@rails/ujs";
+import "turbo-rails"; // If using Turbo
+import "channels";
 
 // app/assets/config/manifest.js
 //= link popper.js
